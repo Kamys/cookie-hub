@@ -1,4 +1,8 @@
-import { login } from './user.js'
+import api from './api'
 
-login('Vasa', 'vasa123')
-    .then(console.log)
+api.user.login('Vasa', 'vasa123')
+    .then(data => {
+        console.log('data', data);
+    })
+
+api.cookie.getCookies()

@@ -1,4 +1,4 @@
-import { promiseMethod } from './api/utils.js'
+import { promiseMethod } from './utils.js'
 
 const users = [
     {

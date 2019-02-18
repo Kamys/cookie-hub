@@ -22,7 +22,7 @@ const cookies = [
     },
 ]
 
-const getCookies = () => {
+export const getCookies = () => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(cookies)
