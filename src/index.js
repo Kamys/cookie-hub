@@ -1,5 +1,6 @@
 import api from './api'
 import loading from './loading'
+import validation from './validation'
 
 api.user.login('Vasa', 'vasa123')
     .then(data => {
@@ -9,3 +10,5 @@ api.user.login('Vasa', 'vasa123')
 api.cookie.getCookies()
 
 loading.startLoading()
+
+validation.isValid()

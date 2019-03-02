@@ -1,4 +1,7 @@
-import { startLoading } from './example1.js'
+const startLoading = () => {
+}
 
+const stopLoading = () => {
+}
 
-export default { startLoading }
+export default { startLoading, stopLoading }
