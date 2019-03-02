@@ -1,0 +1,152 @@
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.3;
+  font-weight: 400;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  background-color: #75c25c;
+}
+
+.page-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.btn {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  padding: 18px;
+  border: none;
+  font: inherit;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background-color: #00b240;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transition: 0.1s ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #00a13a;
+}
+
+.btn:active {
+  background-color: #00c346;
+  box-shadow: initial;
+}
+
+.authorization {
+  width: 480px;
+  margin: auto;
+  padding: 60px;
+  text-align: center;
+  color: #aeaeae;
+  background-color: #ffffff;
+  box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.3);
+}
+
+.authorization__wrap {
+  margin: 0;
+}
+
+.authorization__wrap:first-child {
+  margin-bottom: 22px;
+}
+
+.authorization__field {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  font: inherit;
+  color: #6d6d6d;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.authorization__field:focus {
+  box-shadow: 0 0 5px rgba(50, 200, 255, 0.5);
+  outline: none;
+}
+
+.authorization__field::placeholder {
+  color: #6d6d6d;
+}
+
+.authorization__error {
+  margin: 0;
+  min-height: 22px;
+  color: #ff0000;
+}
+
+.authorization__info {
+  margin: 0;
+  margin-top: 22px;
+}
+
+.authorization__link {
+  color: #40b75d;
+  text-decoration: none;
+}
+
+.authorization__link:hover,
+.authorization__link:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+.authorization__link:active {
+  color: #33914a;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .authorization {
+    width: 100%;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 320px) {
+  .authorization {
+    padding: 10px;
+  }
+}
