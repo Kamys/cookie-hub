@@ -20,7 +20,7 @@ var addEvent = function(object, type, callback) {
 function function_reference(){
     let blocks = document.querySelectorAll(".wraper-blocks-block");
     console.log(document.documentElement.clientWidth)
-    if(document.documentElement.clientWidth <= 1200){
+    if(document.documentElement.clientWidth <= 992){
         blocks.forEach(element => {
             element.style.marginTop = 30 +"px";
         }); 
@@ -32,13 +32,3 @@ function function_reference(){
 }
 addEvent(window, "resize", function_reference);
 
-const equalBlocks = ()=>{
-   let blocks = document.querySelectorAll(".wraper-blocks-description")
-   blocks.forEach(element=>{
-    element.style.height.sort((a,b)=>{
-        a-b
-    })
-       return element.style.height === blocks[0]
-   })
-}
-equalBlocks();
