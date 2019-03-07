@@ -1,11 +1,11 @@
-import api from './api'
-import loading from './loading'
+import * as api from './api/index.js';
+import * as loading from './loading/index.js';
 
-api.user.login('Vasa', 'vasa123')
+api.login('Vasa', 'vasa123')
     .then(data => {
         console.log('data', data);
     })
 
-api.cookie.getCookies()
+api.getCookies();
 
-loading.startLoading()
+loading.startLoading();
