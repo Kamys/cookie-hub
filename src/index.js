@@ -1,36 +1,37 @@
 import loading from './loading'
 
-
-const getUserData = (token) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (token === '1') {
-                resolve();
-            } else {
-                reject('Token not valid!')
-            }
-        }, 1000)
-    })
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-loading.startLoading();
-const promise = getUserData('0');
+const getUserData = async (token) => {
+    await timeout(1000)
+    console.log('Step 3');
+    if (token === '1') {
+        return 'User data'
+    } else {
+        throw 'Token not valid!'
+    }
+}
 
-promise.then(() => {
+console.log('Step 1');
+
+(async () => {
+    try {
+        console.log('Step 2');
+        loading.startLoading();
+        const data = await getUserData('1');
+        console.log('Step 2.1');
+        const sussesText = document.querySelector('.susses')
+        sussesText.innerText = data
+    } catch (text) {
+        const errorText = document.querySelector('.error')
+        errorText.innerText = text;
+    }
+
     loading.stopLoading();
-})
+})()
 
-promise.catch(text => {
-    const errorText = document.querySelector('.error')
-    errorText.innerText = text;
-    loading.stopLoading();
-})
-
-
+console.log('Step 4');
 const img = document.querySelector('.img')
 img.src = 'https://r.hswstatic.com/w_907/gif/tesla-cat.jpg'
-
-
-/*
-.....
-*/
