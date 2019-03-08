@@ -1,14 +1,36 @@
-import api from './api'
 import loading from './loading'
-import validation from './validation'
 
-api.user.login('Vasa', 'vasa123')
-    .then(data => {
-        console.log('data', data);
+
+const getUserData = (token) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (token === '1') {
+                resolve();
+            } else {
+                reject('Token not valid!')
+            }
+        }, 1000)
     })
+}
 
-api.cookie.getCookies()
+loading.startLoading();
+const promise = getUserData('0');
 
-loading.startLoading()
+promise.then(() => {
+    loading.stopLoading();
+})
 
-validation.isValid()
+promise.catch(text => {
+    const errorText = document.querySelector('.error')
+    errorText.innerText = text;
+    loading.stopLoading();
+})
+
+
+const img = document.querySelector('.img')
+img.src = 'https://r.hswstatic.com/w_907/gif/tesla-cat.jpg'
+
+
+/*
+.....
+*/
