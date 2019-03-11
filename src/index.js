@@ -1,4 +1,4 @@
-import loading from './loading'
+import loading from './loading/index.js'
 
 function timeout(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
