@@ -1,4 +1,7 @@
-import loading from './loading/index.js'
+import loading from './loading/index.js';
+import user from './user/index.js';
+
+user.initUser();
 
 function timeout(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
