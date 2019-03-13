@@ -3,7 +3,7 @@ import api from '../api/index.js';
 const loadLoginPage = () => {
   const urlStart = location.href.split('src')[0];
   const urlEnd = 'src/page/login/index.html';
-  return window.open(`${urlStart}${urlEnd}`, '_self');
+  window.open(`${urlStart}${urlEnd}`, '_self');
 }
 
 const initUser = () => {
