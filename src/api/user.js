@@ -17,7 +17,7 @@ const users = [
     },
 ]
 
-export const login = promiseMethod((login, password) => {
+const login = promiseMethod((login, password) => {
     const currentUser = users.find(user => user.login === login)
     if (currentUser) {
         if (currentUser.password === password) {
@@ -49,3 +49,5 @@ const getUserData = (token) => {
         error: `Несуществующий токен!`
     }
 }
+
+export default { login, getUserData };

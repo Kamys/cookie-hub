@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Authorization</title>
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="authorization">
+      <form class="authorization__form" action="#" method="POST">
+        <p class="authorization__wrap">
+          <label class="visually-hidden" for="username">User name</label>
+          <input class="authorization__field" id="username" name="username" type="text" placeholder="username" required>
+        </p>
+        <p class="authorization__wrap">
+          <label class="visually-hidden" for="password">Password</label>
+          <input class="authorization__field" id="password" name="password" type="password" placeholder="password" required>
+        </p>
+        <p class="authorization__error">Ошибка входа</p>
+        <button class="authorization__submit  btn" type="submit">Login</button>
+      </form>
+      <p class="authorization__info">
+        Not registered?
+        <a class="authorization__link" href="javascript:void(0)">Create an account</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
