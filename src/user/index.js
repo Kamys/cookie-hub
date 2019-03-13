@@ -22,7 +22,7 @@ const initUser = () => {
 
 const logout = () => {
   localStorage.removeItem('token');
-  return loadLoginPage();
+  loadLoginPage();
 }
 
 export default {initUser, logout };
