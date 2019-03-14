@@ -1,8 +1,8 @@
 import loading from './loading/index.js';
 import user from './user/index.js';
 
-user.initUser();
-
+const user1 = user.initUser();
+console.log(user1);
 function timeout(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }

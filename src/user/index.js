@@ -18,6 +18,8 @@ const initUser = () => {
   if (userData.error) {
     logout();
   }
+
+  return userData;
 }
 
 const logout = () => {
