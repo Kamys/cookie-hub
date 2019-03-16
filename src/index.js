@@ -2,7 +2,13 @@ import loading from './loading/index.js';
 import user from './user/index.js';
 
 const user1 = user.initUser();
-console.log(user1);
+
+const hendleClick = () => {
+  user.logout();
+}
+
+document.querySelector('.logout').addEventListener('click', hendleClick);
+
 function timeout(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
