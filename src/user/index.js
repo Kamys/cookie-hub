@@ -1,5 +1,26 @@
 import api from '../api/index.js';
 
+const showLoginError = (errorNode, errerText = 'Ошибка входа') => {
+  errorNode.textContent = errerText;
+}
+
+const login = (username, password, errorNode) => {
+  api.user.login(username, password)
+    .then(data => {
+      if (data.error) {
+        return showLoginError(errorNode);
+      }
+      console.log(data.data.token);
+      localStorage.setItem('token', data.data.token);
+      loadMainPage();
+    });
+}
+
+const loadMainPage = () => {
+  const url = location.href.split('page/login/').join('');
+  window.open( `${url}`,'_self');
+}
+
 const loadLoginPage = () => {
   const urlStart = location.href.split('src')[0];
   const urlEnd = 'src/page/login/index.html';
@@ -27,4 +48,4 @@ const logout = () => {
   loadLoginPage();
 }
 
-export default {initUser, logout };
+export default { initUser, logout, login };
