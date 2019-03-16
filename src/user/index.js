@@ -10,7 +10,6 @@ const login = (username, password, errorNode) => {
       if (data.error) {
         return showLoginError(errorNode);
       }
-      console.log(data.data.token);
       localStorage.setItem('token', data.data.token);
       loadMainPage();
     });
