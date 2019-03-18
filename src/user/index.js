@@ -1,9 +1,20 @@
 import api from '../api/index.js';
 
+/**
+ * Displays the error text in the html element.
+ * @param {object} errorNode - Html element to display the error text.
+ * @param {string} errerText - Error text.
+ */
 const showLoginError = (errorNode, errerText = 'Ошибка входа') => {
   errorNode.textContent = errerText;
 }
 
+/**
+ * Authorize user.
+ * @param {string} username - User name.
+ * @param {string} password - Password.
+ * @param {object} errorNode - Html element to display the error text.
+ */
 const login = (username, password, errorNode) => {
   api.user.login(username, password)
     .then(data => {
@@ -15,17 +26,27 @@ const login = (username, password, errorNode) => {
     });
 }
 
+/**
+ * Loads the main page.
+ */
 const loadMainPage = () => {
   const url = location.href.split('page/login/').join('');
   window.open( `${url}`,'_self');
 }
 
+/**
+ * Loads the login page.
+ */
 const loadLoginPage = () => {
   const urlStart = location.href.split('src')[0];
   const urlEnd = 'src/page/login/index.html';
   window.open(`${urlStart}${urlEnd}`, '_self');
 }
 
+/**
+ * Initializes the user.
+ * @returns {object} Object with user data.
+ */
 const initUser = () => {
   const token = localStorage.getItem('token');
 
@@ -42,6 +63,9 @@ const initUser = () => {
   return userData;
 }
 
+/**
+ * The user logs out of his account.
+ */
 const logout = () => {
   localStorage.removeItem('token');
   loadLoginPage();
