@@ -3,6 +3,10 @@ import user from '../../user/index.js';
 const loginFormError = document.querySelector('.authorization__error');
 const loginFormSubmit = document.querySelector('.authorization__submit');
 
+const showLoginError = (errorText) => {
+  loginFormError.textContent = errorText;
+}
+
 const handleLoginSubmit = (event) => {
   event.preventDefault();
 
@@ -11,7 +15,7 @@ const handleLoginSubmit = (event) => {
 
   loginFormError.textContent = '';
 
-  user.login(username, password, loginFormError);
+  user.login(username, password, showLoginError);
 }
 
 loginFormSubmit.addEventListener('click', handleLoginSubmit);
