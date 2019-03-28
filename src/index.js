@@ -3,11 +3,11 @@ import user from './user/index.js';
 
 const user1 = user.initUser();
 
-const hendleClick = () => {
+const handleClick = () => {
   user.logout();
 }
 
-document.querySelector('.logout').addEventListener('click', hendleClick);
+document.querySelector('.logout').addEventListener('click', handleClick);
 
 function timeout(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

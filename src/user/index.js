@@ -3,10 +3,10 @@ import api from '../api/index.js';
 /**
  * Displays the error text in the html element.
  * @param {object} errorNode - Html element to display the error text.
- * @param {string} errerText - Error text.
+ * @param {string} errorText - Error text.
  */
-const showLoginError = (errorNode, errerText = 'Ошибка входа') => {
-  errorNode.textContent = errerText;
+const showLoginError = (errorNode, errorText = 'Ошибка входа') => {
+  errorNode.textContent = errorText;
 }
 
 /**
