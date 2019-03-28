@@ -1,26 +1,18 @@
 import api from '../api/index.js';
 
 /**
- * Displays the error text in the html element.
- * @param {object} errorNode - Html element to display the error text.
- * @param {string} errorText - Error text.
- */
-const showLoginError = (errorNode, errorText = 'Ошибка входа') => {
-  errorNode.textContent = errorText;
-}
-
-/**
  * Authorize user.
  * @param {string} username - User name.
  * @param {string} password - Password.
- * @param {object} errorNode - Html element to display the error text.
+ * @param {function} error - Callback function to handle the error.
  */
-const login = (username, password, errorNode) => {
+const login = (username, password, error) => {
   api.user.login(username, password)
     .then(data => {
       if (data.error) {
-        return showLoginError(errorNode);
+        return error(data.error);
       }
+
       localStorage.setItem('token', data.data.token);
       loadMainPage();
     });
