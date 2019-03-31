@@ -10,7 +10,8 @@ const login = (username, password, error) => {
   api.user.login(username, password)
     .then(data => {
       if (data.error) {
-        return error(data.error);
+        error(data.error);
+        return;
       }
 
       localStorage.setItem('token', data.data.token);
