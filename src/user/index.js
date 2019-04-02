@@ -1,4 +1,5 @@
 import api from '../api/index.js';
+import router from '../router/index.js';
 
 /**
  * Authorize user.
@@ -15,25 +16,8 @@ const login = (username, password, error) => {
       }
 
       localStorage.setItem('token', data.data.token);
-      loadMainPage();
+      router.goTo(router.PAGE_URL.main);
     });
-}
-
-/**
- * Loads the main page.
- */
-const loadMainPage = () => {
-  const url = location.href.split('page/login/').join('');
-  window.open( `${url}`,'_self');
-}
-
-/**
- * Loads the login page.
- */
-const loadLoginPage = () => {
-  const urlStart = location.href.split('src')[0];
-  const urlEnd = 'src/page/login/index.html';
-  window.open(`${urlStart}${urlEnd}`, '_self');
 }
 
 /**
@@ -44,7 +28,7 @@ const initUser = () => {
   const token = localStorage.getItem('token');
 
   if (!token) {
-    return loadLoginPage();
+    return router.goTo(router.PAGE_URL.login);
   }
 
   const userData = api.user.getUserData(token);
@@ -61,7 +45,7 @@ const initUser = () => {
  */
 const logout = () => {
   localStorage.removeItem('token');
-  loadLoginPage();
+  router.goTo(router.PAGE_URL.login);
 }
 
 export default { initUser, logout, login };
