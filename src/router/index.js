@@ -8,7 +8,7 @@ const PAGE_URL = {
  * @param {String} url - The path to the page.
  */
 const goTo = url => {
-  location = `${location.origin}/src${url}`;
+  window.location = `${window.location.origin}${url}`;
 };
 
 /**
