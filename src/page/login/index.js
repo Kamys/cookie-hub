@@ -1,4 +1,9 @@
 import user from '../../user/index.js';
+import router from '../../router/index.js';
+
+if (user.isToken) {
+  router.goTo(router.PAGE_URL.main);
+}
 
 const loginFormError = document.querySelector('.authorization__error');
 const loginFormSubmit = document.querySelector('.authorization__submit');
