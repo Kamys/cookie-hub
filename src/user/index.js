@@ -33,7 +33,6 @@ const initUser = () => {
 
   api.user.getUserData(token)
     .then(data => {
-      console.log(data);
       if (data.error) {
         logout();
         return;
