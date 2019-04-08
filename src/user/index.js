@@ -21,6 +21,14 @@ const login = (username, password, error) => {
 }
 
 /**
+ * Checks for the token property in the localStorage object.
+ * @returns {Boolean} The presence (true) or absence (false) of a token.
+ */
+const isToken = () => {
+  return localStorage.getItem('token');
+};
+
+/**
  * Initializes the user.
  * @returns {object} Object with user data.
  */
@@ -50,4 +58,4 @@ const logout = () => {
   router.goTo(router.PAGE_URL.login);
 }
 
-export default { initUser, logout, login };
+export default { initUser, logout, login, isToken };
