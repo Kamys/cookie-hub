@@ -31,14 +31,17 @@ const initUser = () => {
     return router.goTo(router.PAGE_URL.login);
   }
 
-  const userData = api.user.getUserData(token);
+  api.user.getUserData(token)
+    .then(data => {
+      console.log(data);
+      if (data.error) {
+        logout();
+        return;
+      }
 
-  if (userData.error) {
-    logout();
-  }
-
-  return userData;
-}
+      return data;
+    });
+};
 
 /**
  * The user logs out of his account.
