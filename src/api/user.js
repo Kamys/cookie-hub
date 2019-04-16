@@ -38,7 +38,7 @@ const login = promiseMethod((login, password) => {
     }
 })
 
-const getUserData = (token) => {
+const getUserData = promiseMethod((token) => {
     const currentUser = users.find(user => user.token === token)
 
     if (currentUser) {
@@ -48,6 +48,6 @@ const getUserData = (token) => {
     return {
         error: `Несуществующий токен!`
     }
-}
+})
 
 export default { login, getUserData };

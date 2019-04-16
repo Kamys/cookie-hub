@@ -1,4 +1,5 @@
 import api from '../api/index.js';
+import router from '../router/index.js';
 
 /**
  * Authorize user.
@@ -15,26 +16,17 @@ const login = (username, password, error) => {
       }
 
       localStorage.setItem('token', data.data.token);
-      loadMainPage();
+      router.goTo(router.PAGE_URL.main);
     });
 }
 
 /**
- * Loads the main page.
+ * Checks for the token property in the localStorage object.
+ * @returns {Boolean} The presence (true) or absence (false) of a token.
  */
-const loadMainPage = () => {
-  const url = location.href.split('page/login/').join('');
-  window.open( `${url}`,'_self');
-}
-
-/**
- * Loads the login page.
- */
-const loadLoginPage = () => {
-  const urlStart = location.href.split('src')[0];
-  const urlEnd = 'src/page/login/index.html';
-  window.open(`${urlStart}${urlEnd}`, '_self');
-}
+const isToken = () => {
+  return localStorage.getItem('token');
+};
 
 /**
  * Initializes the user.
@@ -44,24 +36,26 @@ const initUser = () => {
   const token = localStorage.getItem('token');
 
   if (!token) {
-    return loadLoginPage();
+    return router.goTo(router.PAGE_URL.login);
   }
 
-  const userData = api.user.getUserData(token);
+  api.user.getUserData(token)
+    .then(data => {
+      if (data.error) {
+        logout();
+        return;
+      }
 
-  if (userData.error) {
-    logout();
-  }
-
-  return userData;
-}
+      return data;
+    });
+};
 
 /**
  * The user logs out of his account.
  */
 const logout = () => {
   localStorage.removeItem('token');
-  loadLoginPage();
+  router.goTo(router.PAGE_URL.login);
 }
 
-export default { initUser, logout, login };
+export default { initUser, logout, login, isToken };
