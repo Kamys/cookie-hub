@@ -15,9 +15,9 @@ const validationMethods = {
 
 /**
  * Check valid data in form.
- * @param form Data of form.
- * @param schemaValidation
- * @return true - is all data in form valid.
+ * @param {Object} form - Data of form.
+ * @param {Object} schemaValidation - The validation rules for form data.
+ * @returns {Boolean}
  */
 const isValid = (form, schemaValidation) => {
   const fieldNames = Object.keys(schemaValidation);
@@ -27,13 +27,15 @@ const isValid = (form, schemaValidation) => {
 
     for (const param of validationParams) {
       if (param[0] === 'custom') {
-        if (!param[1](fieldValue, form)) {
-          return false;
+        if (param[1](fieldValue, form)) {
+          continue;
         }
-        continue;
+        return false;
       }
 
-      if (!validationMethods[param[0]](fieldValue, param[1])) {
+      const validationMethod = validationMethods[param[0]];
+      const validationMethodArgs = [fieldValue, param[1]];
+      if (validationMethod && !validationMethod(...validationMethodArgs)) {
         return false;
       }
     }
