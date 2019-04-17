@@ -1,7 +1,7 @@
 import user from '../../user/index.js';
 import router from '../../router/index.js';
 
-if (user.isToken) {
+if (user.isToken()) {
   router.goTo(router.PAGE_URL.main);
 }
 
