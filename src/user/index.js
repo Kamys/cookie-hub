@@ -25,7 +25,7 @@ const login = (username, password, error) => {
  * @returns {Boolean} The presence (true) or absence (false) of a token.
  */
 const isToken = () => {
-  return localStorage.getItem('token');
+  return localStorage.getItem('token') !== null;
 };
 
 /**
