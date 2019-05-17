@@ -27,9 +27,8 @@ const isValid = (form, schemaValidation) => {
   for (const fieldName of fieldNames) {
     const fieldValue = form[fieldName];
     const validationParams = Object.entries(schemaValidation[fieldName]);
-    for (const param of validationParams) {
-      const [methodName, methodArg] = param;
 
+    for (const [methodName, methodArg] of validationParams) {
       if (methodName === 'custom') {
         const isCustomValid = validationMethods.customCall(fieldValue, form, methodArg);
         if (!isCustomValid) {
