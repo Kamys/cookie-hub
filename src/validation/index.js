@@ -11,7 +11,7 @@ const validationMethods = {
   regex(value, regex) {
     return regex.test(value);
   },
-  customCall(value, form, fn) {
+  custom(value, fn, form) {
     return fn(value, form);
   },
 };
@@ -29,16 +29,8 @@ const isValid = (form, schemaValidation) => {
     const validationParams = Object.entries(schemaValidation[fieldName]);
 
     for (const [ruleName, ruleArgs] of validationParams) {
-      if (ruleName === 'custom') {
-        const isCustomValid = validationMethods.customCall(fieldValue, form, ruleArgs);
-        if (!isCustomValid) {
-          return false;
-        }
-        continue;
-      }
-
       const validationMethod = validationMethods[ruleName];
-      const validationMethodArgs = [fieldValue, ruleArgs];
+      const validationMethodArgs = [fieldValue, ruleArgs, form];
       const isMethodValid = validationMethod(...validationMethodArgs);
       if (validationMethod && !isMethodValid) {
         return false;
