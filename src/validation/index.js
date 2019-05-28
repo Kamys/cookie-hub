@@ -1,34 +1,44 @@
-const form = {
-    login: 'Vasa',
-    password: '13edewd',
-    password2: '13edewd',
-}
-
-const schemaValidation = {
-    login: {
-        required: true,
-        minLength: 4,
-        maxLength: 10,
-        regex: '123123',
-    },
-    password: {
-        required: true,
-        minLength: 4,
-        maxLength: 10,
-        custom: (value, form) => {
-            return value === form.password2;
-        }
-    }
-}
+const validationMethods = {
+  required(value) {
+    return value !== '';
+  },
+  minLength(value, num) {
+    return value.length >= num;
+  },
+  maxLength(value, num) {
+    return value.length <= num;
+  },
+  regex(value, regex) {
+    return regex.test(value);
+  },
+  custom(value, fn, form) {
+    return fn(value, form);
+  },
+};
 
 /**
  * Check valid data in form.
- * @param form Data of form.
- * @param schemaValidation
- * @return true - is all data in form valid.
+ * @param {Object} form - Data of form.
+ * @param {Object} schemaValidation - The validation rules for form data.
+ * @returns {Boolean}
  */
 const isValid = (form, schemaValidation) => {
-    return true;
-}
+  const fieldNames = Object.keys(schemaValidation);
+  for (const fieldName of fieldNames) {
+    const fieldValue = form[fieldName];
+    const validationParams = Object.entries(schemaValidation[fieldName]);
 
-export default { isValid }
+    for (const [ruleName, ruleArgs] of validationParams) {
+      const validationMethod = validationMethods[ruleName];
+      const validationMethodArgs = [fieldValue, ruleArgs, form];
+      const isMethodValid = validationMethod(...validationMethodArgs);
+      if (validationMethod && !isMethodValid) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+};
+
+export default { isValid };
